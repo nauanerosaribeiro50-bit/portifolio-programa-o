@@ -1,0 +1,43 @@
+
+CREATE DATABASE vendas;
+USE vendas;
+CREATE TABLE Produto(
+Codigo_Produto INTEGER, 
+Descricao_Produto VARCHAR(30),
+Preco_Produto FLOAT);
+ALTER TABLE Produto
+ADD CONSTRAINT PK_Produto PRIMARY KEY (Codigo_Produto);
+USE vendas;
+CREATE TABLE Nota_Fical(
+Numero_NF INTEGER,
+Data_NF DATE,
+Valor_NF FLOAT);
+RENAME TABLE Nota_Fical to Nota_Fiscal;
+ALTER TABLE Nota_Fiscal
+ADD CONSTRAINT PK_Nota_Fiscal PRIMARY KEY (Numero_NF);
+CREATE TABLE Itens(
+Produto_Codigo_Produto INTEGER,
+Nota_Fiscal_Numero_NF INTEGER,
+Num_Item INTEGER,
+Qtde_Item INTEGER);
+ALTER TABLE Itens
+ADD CONSTRAINT PK_Itens PRIMARY KEY(Produto_Codigo_Produto, Nota_Fiscal_Numero_NF);
+ALTER TABLE Produto MODIFY COLUMN Descricao_Produto VARCHAR(50);
+ALTER TABLE Nota_Fiscal
+ADD COLUMN ICMS FLOAT AFTER Numero_NF;
+ALTER TABLE Produto ADD COLUMN PESO FLOAT;
+ALTER TABLE Produto
+RENAME COLUMN PESO to Peso;
+ALTER TABLE Itens
+DROP PRIMARY KEY;
+
+ALTER TABLE Itens
+ADD CONSTRAINT PK_Itens PRIMARY KEY (Num_Item);
+SELECT * FROM Produto;
+SELECT * FROM Nota_Fiscal;
+ALTER TABLE Nota_Fiscal
+RENAME COLUMN Valor_NF TO ValorTotal_NF;
+ALTER TABLE Nota_Fiscal
+DROP COLUMN Data_NF;
+DROP TABLE Itens;
+RENAME TABLE Nota_Fiscal TO Venda;
