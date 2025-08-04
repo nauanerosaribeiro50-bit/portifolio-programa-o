@@ -1,0 +1,159 @@
+
+USE vendas;
+CREATE TABLE duplicata(
+Nome CHAR(40),
+Numero INTEGER NOT NULL, 
+Valor DECIMAL(10,2),
+Vencimento DATE,
+BANCO CHAR(10),
+PRIMARY KEY(Numero)
+);
+
+ALTER TABLE duplicata
+RENAME COLUMN BANCO TO Banco;
+
+USE vendas;
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) VALUES('abc papelaria', 100100, 5000.00, '2017/01/20', 'itau');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('livraria fernandes', 100110, 2500.00, '2017/01/22', 'itau');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('livraria fernandes', 100120, 1500.00, '2016/10/15', 'bradesco');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('abc papelaria', 100130, 8000.00, '2016/10/15', 'santander');
+
+USE vendas;
+ALTER TABLE duplicata MODIFY COLUMN Banco VARCHAR(40);
+
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('ler e saber', 200120, 10500.00, '2018/04/26', 'banco do brasil');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('ler e cia', 200125, 2000.00, '2018/04/26', 'banco do brasil');
+
+USE vendas;
+UPDATE duplicata
+SET Nome = 'livros e cia'
+WHERE Numero = 200125;
+
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('ler e saber', 200130, 11000.00, '2018/09/26', 'itau');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('papelaria silva', 250350, 1500.00, '2018/01/26', 'bradesco');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('livros mm', 250360, 500.00, '2018/12/18', 'santander');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('livros mm', 250370, 3400.00, '2018/04/26', 'santander');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('papelaria silva', 250380, 3500.00, '2018/04/26', 'banco do brasil');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('livros e cia', 453360, 1500.00, '2018/06/15', 'itau');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('livros mm', 453365, 5400.00, '2018/06/15', 'bradesco');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('papelaria silva', 453370, 2350.00, '2017/12/27', 'itau');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('livros e cia', 453380, 1550.00, '2017/12/27', 'banco do brasil');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('abc papelaria', 980130, 4000.00, '2016/12/11', 'itau');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('papel e afins', 985502, 2500.00, '2016/03/12', 'itau');
+
+USE vendas;
+UPDATE duplicata
+SET Numero = 985001
+WHERE Numero = 980130;
+
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('ler e saber', 888132, 2500.00, '2017/03/05', 'itau');
+
+USE vendas;
+UPDATE duplicata
+SET Banco = 'santander'
+WHERE Numero = 985002;
+
+DELETE FROM duplicata
+WHERE Numero = 888132;
+DELETE FROM duplicata
+WHERE Numero = 985001;
+DELETE FROM duplicata
+WHERE Numero = 985502;
+
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('abc papelaria', 980130, 4000.00, '2016/12/11', 'itau');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('livraria fernandes', 770710, 2500.00, '2016/11/15', 'santander');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('abc papelaria', 985001, 3000.00, '2016/09/11', 'itau');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('papel e afins', 985002, 2500.00, '2016/03/12', 'santander');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('ler e saber', 888132, 2500.00, '2017/03/05', 'itau');
+
+-- a ordem da visualização usando o SELECT * ficará na ordem da PK.
+SELECT * FROM duplicata;
+SELECT COUNT(*) FROM duplicata;
+SELECT Nome, Vencimento, Valor FROM duplicata;
+SELECT Banco, Numero FROM duplicata
+WHERE Banco = 'itau';
+SELECT COUNT(*) AS QTD_DUPLICATAS_ITAU FROM duplicata 
+WHERE Banco = 'itau';
+SELECT Numero, Vencimento, Valor, Nome FROM duplicata
+WHERE YEAR(Vencimento) = 2017;
+SELECT Numero, Vencimento, Valor, Nome FROM duplicata
+WHERE Banco <> 'itau' AND Banco <> 'santander';
+SELECT SUM(Valor) AS TOTAL_PAPELARIA_SILVA FROM duplicata
+WHERE Nome = 'papelaria silva';
+
+USE vendas;
+SELECT * FROM duplicata
+WHERE Nome = 'papelaria silva';
+DELETE FROM duplicata
+WHERE Numero = 770710;
+
+SELECT * FROM duplicata
+WHERE Numero = 770710;
+SELECT * FROM duplicata ORDER BY Nome;
+SELECT Nome, Banco, Valor, Vencimento FROM duplicata
+ORDER BY Vencimento;
+UPDATE duplicata
+SET Banco = 'santander' 
+WHERE Banco  = 'banco do brasil';
+
+SELECT * FROM duplicata;
+SELECT Nome FROM duplicata
+WHERE Banco = 'bradesco';
+SELECT SUM(Valor) AS SOMA_2016 FROM duplicata
+WHERE Vencimento >= '2016/01/01' AND Vencimento <= '2016/12/31';
+
+-- ou
+
+USE Vendas;
+SELECT SUM(Valor) AS SOMA_2016 FROM duplicata
+WHERE YEAR(Vencimento) = 2016; 
+SELECT SUM(Valor) AS SOMA_VALORES FROM duplicata
+WHERE MONTH(Vencimento) = 08 AND YEAR(Vencimento) = 2016;
+
+-- OU
+
+USE vendas;
+SELECT SUM(valor) AS SOMA_VALORES FROM duplicata
+WHERE Vencimento >= '2016/08/01' AND Vencimento <= '2016/08/30';
+
+-- No mês 08 não tem duplicada.
+SELECT Nome, SUM(Valor) AS Valor_Vencido, DATEDIFF(CURDATE(), Vencimento) AS Qtde_Dias_Vencido, 
+Vencimento, SUM(Valor * 1.5) AS Valor_Com_Multa FROM duplicata
+WHERE YEAR(Vencimento) = 2016 AND DATEDIFF(CURDATE(), Vencimento) > 0
+GROUP BY Vencimento;
+SELECT Nome, CONCAT('R$ ', FORMAT(SUM(VALOR),2)) AS Valor_Vencido, DATE_FORMAT(Vencimento, '%d/%m/%Y') AS Vencimento,
+DATEDIFF(CURDATE(), Vencimento) AS Qtde_Dias_Vencido, FORMAT(SUM(Valor * 1.05),2) AS Valor_Com_Multa FROM duplicata
+WHERE Nome = 'ler e saber' AND MONTH(Vencimento) >= 01 AND MONTH(Vencimento) <= 05 AND YEAR(Vencimento) = 2017
+GROUP BY DATE_FORMAT(Vencimento, '%d/%m/%Y');
+SELECT CONCAT('R$ ', FORMAT(AVG(Valor), 2)) AS Média_Valores_2016 FROM duplicata
+WHERE YEAR(Vencimento) = 2016;
+SELECT Nome, Numero, CONCAT('R$ ', FORMAT(Valor, 2)) AS Valor, DATE_FORMAT(Vencimento, '%d/%m/%Y') AS Vencimento,
+Banco FROM duplicata
+WHERE valor > 10000;
+SELECT CONCAT('R$ ', FORMAT(SUM(valor), 2)) AS Valor_Total, UCASE(Banco) AS Banco FROM duplicata
+WHERE Banco = 'santander'
+GROUP BY Banco;
+SELECT Nome, Banco FROM duplicata
+WHERE Banco = 'itau' OR Banco = 'bradesco';
