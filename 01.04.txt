@@ -1,0 +1,674 @@
+Atividades dia 01/04
+
+At.1 
+
+CREATE DATABASE vendas;
+USE vendas;
+CREATE TABLE Produto(
+Codigo_Produto INTEGER, 
+Descricao_Produto VARCHAR(30),
+Preco_Produto FLOAT);
+ALTER TABLE Produto
+ADD CONSTRAINT PK_Produto PRIMARY KEY (Codigo_Produto);
+USE vendas;
+CREATE TABLE Nota_Fical(
+Numero_NF INTEGER,
+Data_NF DATE,
+Valor_NF FLOAT);
+RENAME TABLE Nota_Fical to Nota_Fiscal;
+ALTER TABLE Nota_Fiscal
+ADD CONSTRAINT PK_Nota_Fiscal PRIMARY KEY (Numero_NF);
+CREATE TABLE Itens(
+Produto_Codigo_Produto INTEGER,
+Nota_Fiscal_Numero_NF INTEGER,
+Num_Item INTEGER,
+Qtde_Item INTEGER);
+ALTER TABLE Itens
+ADD CONSTRAINT PK_Itens PRIMARY KEY(Produto_Codigo_Produto, Nota_Fiscal_Numero_NF);
+ALTER TABLE Produto MODIFY COLUMN Descricao_Produto VARCHAR(50);
+ALTER TABLE Nota_Fiscal
+ADD COLUMN ICMS FLOAT AFTER Numero_NF;
+ALTER TABLE Produto ADD COLUMN PESO FLOAT;
+ALTER TABLE Produto
+RENAME COLUMN PESO to Peso;
+ALTER TABLE Itens
+DROP PRIMARY KEY;
+
+ALTER TABLE Itens
+ADD CONSTRAINT PK_Itens PRIMARY KEY (Num_Item);
+SELECT * FROM Produto;
+SELECT * FROM Nota_Fiscal;
+ALTER TABLE Nota_Fiscal
+RENAME COLUMN Valor_NF TO ValorTotal_NF;
+ALTER TABLE Nota_Fiscal
+DROP COLUMN Data_NF;
+DROP TABLE Itens;
+RENAME TABLE Nota_Fiscal TO Venda;
+
+At.2
+
+
+USE vendas;
+CREATE TABLE duplicata(
+Nome CHAR(40),
+Numero INTEGER NOT NULL, 
+Valor DECIMAL(10,2),
+Vencimento DATE,
+BANCO CHAR(10),
+PRIMARY KEY(Numero)
+);
+
+ALTER TABLE duplicata
+RENAME COLUMN BANCO TO Banco;
+
+USE vendas;
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) VALUES('abc papelaria', 100100, 5000.00, '2017/01/20', 'itau');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('livraria fernandes', 100110, 2500.00, '2017/01/22', 'itau');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('livraria fernandes', 100120, 1500.00, '2016/10/15', 'bradesco');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('abc papelaria', 100130, 8000.00, '2016/10/15', 'santander');
+
+USE vendas;
+ALTER TABLE duplicata MODIFY COLUMN Banco VARCHAR(40);
+
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('ler e saber', 200120, 10500.00, '2018/04/26', 'banco do brasil');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('ler e cia', 200125, 2000.00, '2018/04/26', 'banco do brasil');
+
+USE vendas;
+UPDATE duplicata
+SET Nome = 'livros e cia'
+WHERE Numero = 200125;
+
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('ler e saber', 200130, 11000.00, '2018/09/26', 'itau');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('papelaria silva', 250350, 1500.00, '2018/01/26', 'bradesco');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('livros mm', 250360, 500.00, '2018/12/18', 'santander');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('livros mm', 250370, 3400.00, '2018/04/26', 'santander');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('papelaria silva', 250380, 3500.00, '2018/04/26', 'banco do brasil');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('livros e cia', 453360, 1500.00, '2018/06/15', 'itau');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('livros mm', 453365, 5400.00, '2018/06/15', 'bradesco');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('papelaria silva', 453370, 2350.00, '2017/12/27', 'itau');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('livros e cia', 453380, 1550.00, '2017/12/27', 'banco do brasil');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('abc papelaria', 980130, 4000.00, '2016/12/11', 'itau');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('papel e afins', 985502, 2500.00, '2016/03/12', 'itau');
+
+USE vendas;
+UPDATE duplicata
+SET Numero = 985001
+WHERE Numero = 980130;
+
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('ler e saber', 888132, 2500.00, '2017/03/05', 'itau');
+
+USE vendas;
+UPDATE duplicata
+SET Banco = 'santander'
+WHERE Numero = 985002;
+
+DELETE FROM duplicata
+WHERE Numero = 888132;
+DELETE FROM duplicata
+WHERE Numero = 985001;
+DELETE FROM duplicata
+WHERE Numero = 985502;
+
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('abc papelaria', 980130, 4000.00, '2016/12/11', 'itau');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('livraria fernandes', 770710, 2500.00, '2016/11/15', 'santander');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('abc papelaria', 985001, 3000.00, '2016/09/11', 'itau');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('papel e afins', 985002, 2500.00, '2016/03/12', 'santander');
+INSERT INTO duplicata(Nome, Numero, Valor, Vencimento, Banco) 
+VALUES('ler e saber', 888132, 2500.00, '2017/03/05', 'itau');
+
+-- a ordem da visualização usando o SELECT * ficará na ordem da PK.
+SELECT * FROM duplicata;
+SELECT COUNT(*) FROM duplicata;
+SELECT Nome, Vencimento, Valor FROM duplicata;
+SELECT Banco, Numero FROM duplicata
+WHERE Banco = 'itau';
+SELECT COUNT(*) AS QTD_DUPLICATAS_ITAU FROM duplicata 
+WHERE Banco = 'itau';
+SELECT Numero, Vencimento, Valor, Nome FROM duplicata
+WHERE YEAR(Vencimento) = 2017;
+SELECT Numero, Vencimento, Valor, Nome FROM duplicata
+WHERE Banco <> 'itau' AND Banco <> 'santander';
+SELECT SUM(Valor) AS TOTAL_PAPELARIA_SILVA FROM duplicata
+WHERE Nome = 'papelaria silva';
+
+USE vendas;
+SELECT * FROM duplicata
+WHERE Nome = 'papelaria silva';
+DELETE FROM duplicata
+WHERE Numero = 770710;
+
+SELECT * FROM duplicata
+WHERE Numero = 770710;
+SELECT * FROM duplicata ORDER BY Nome;
+SELECT Nome, Banco, Valor, Vencimento FROM duplicata
+ORDER BY Vencimento;
+UPDATE duplicata
+SET Banco = 'santander' 
+WHERE Banco  = 'banco do brasil';
+
+SELECT * FROM duplicata;
+SELECT Nome FROM duplicata
+WHERE Banco = 'bradesco';
+SELECT SUM(Valor) AS SOMA_2016 FROM duplicata
+WHERE Vencimento >= '2016/01/01' AND Vencimento <= '2016/12/31';
+
+-- ou
+
+USE Vendas;
+SELECT SUM(Valor) AS SOMA_2016 FROM duplicata
+WHERE YEAR(Vencimento) = 2016; 
+SELECT SUM(Valor) AS SOMA_VALORES FROM duplicata
+WHERE MONTH(Vencimento) = 08 AND YEAR(Vencimento) = 2016;
+
+-- OU
+
+USE vendas;
+SELECT SUM(valor) AS SOMA_VALORES FROM duplicata
+WHERE Vencimento >= '2016/08/01' AND Vencimento <= '2016/08/30';
+
+-- No mês 08 não tem duplicada.
+SELECT Nome, SUM(Valor) AS Valor_Vencido, DATEDIFF(CURDATE(), Vencimento) AS Qtde_Dias_Vencido, 
+Vencimento, SUM(Valor * 1.5) AS Valor_Com_Multa FROM duplicata
+WHERE YEAR(Vencimento) = 2016 AND DATEDIFF(CURDATE(), Vencimento) > 0
+GROUP BY Vencimento;
+SELECT Nome, CONCAT('R$ ', FORMAT(SUM(VALOR),2)) AS Valor_Vencido, DATE_FORMAT(Vencimento, '%d/%m/%Y') AS Vencimento,
+DATEDIFF(CURDATE(), Vencimento) AS Qtde_Dias_Vencido, FORMAT(SUM(Valor * 1.05),2) AS Valor_Com_Multa FROM duplicata
+WHERE Nome = 'ler e saber' AND MONTH(Vencimento) >= 01 AND MONTH(Vencimento) <= 05 AND YEAR(Vencimento) = 2017
+GROUP BY DATE_FORMAT(Vencimento, '%d/%m/%Y');
+SELECT CONCAT('R$ ', FORMAT(AVG(Valor), 2)) AS Média_Valores_2016 FROM duplicata
+WHERE YEAR(Vencimento) = 2016;
+SELECT Nome, Numero, CONCAT('R$ ', FORMAT(Valor, 2)) AS Valor, DATE_FORMAT(Vencimento, '%d/%m/%Y') AS Vencimento,
+Banco FROM duplicata
+WHERE valor > 10000;
+SELECT CONCAT('R$ ', FORMAT(SUM(valor), 2)) AS Valor_Total, UCASE(Banco) AS Banco FROM duplicata
+WHERE Banco = 'santander'
+GROUP BY Banco;
+SELECT Nome, Banco FROM duplicata
+WHERE Banco = 'itau' OR Banco = 'bradesco';
+
+At.3
+
+CREATE SCHEMA longa_vida;
+
+USE longa_vida;
+CREATE TABLE plano(
+Numero CHAR(2) NOT NULL,
+Descricao CHAR(30),
+Valor DECIMAL(10,2),
+PRIMARY KEY (Numero));
+
+USE longa_vida;
+INSERT INTO plano(Numero, Descricao, Valor)
+VALUES('B1', 'BASICO 1', 200);
+INSERT INTO plano(Numero, Descricao, Valor)
+VALUES('B2', 'BASICO 2', 150);
+INSERT INTO plano(Numero, Descricao, Valor)
+VALUES('B3', 'BASICO 3', 100);
+INSERT INTO plano(Numero, Descricao, Valor)
+VALUES('E1', 'EXECUTIVO 1', 350);
+INSERT INTO plano(Numero, Descricao, Valor)
+VALUES('E2', 'EXECUTIVO 2', 300);
+INSERT INTO plano(Numero, Descricao, Valor)
+VALUES('E3', 'EXECUTIVO 3', 250);
+INSERT INTO plano(Numero, Descricao, Valor)
+VALUES('M1', 'MASTER 1', 500);
+INSERT INTO plano(Numero, Descricao, Valor)
+VALUES('M2', 'MASTER 2', 450);
+INSERT INTO plano(Numero, Descricao, Valor)
+VALUES('M3', 'MASTER 3', 500);
+
+CREATE TABLE associado(Plano CHAR(2) NOT NULL,
+Nome CHAR(40) NOT NULL,
+Endereço CHAR(35),
+Cidade CHAR(20),
+Estado CHAR(2),
+CEP CHAR(9),
+PRIMARY KEY(Nome)
+);
+
+USE longa_vida;
+INSERT INTO associado(Plano, Nome, Endereço, Cidade, Estado, CEP)
+VALUE ('B1', 'JOSE ANTONIO DA SILVA', 'R. FELIPE DO AMARAL, 3450', 'COTIA', 'SP', '06700-000');
+INSERT INTO associado(Plano, Nome, Endereço, Cidade, Estado, CEP)
+VALUE ('B1', 'MARIA DA SILVA SOBRINHO', 'R. FELIPE DE JESUS, 1245', 'DIADEMA', 'SP', '09960-170');
+INSERT INTO associado(Plano, Nome, Endereço, Cidade, Estado, CEP)
+VALUE ('B1', 'PEDRO JOSE DE OLIVEIRA', 'R. AGRIPINO DIAS, 155', 'COTIA', 'SP', '06700-011');
+INSERT INTO associado(Plano, Nome, Endereço, Cidade, Estado, CEP)
+VALUE ('B2', 'ANTONIA DE FERNANDES', 'R. PE EZEQUIEL, 567', 'DIADEMA', 'SP', '09960-175');
+INSERT INTO associado(Plano, Nome, Endereço, Cidade, Estado, CEP)
+VALUE ('B2', 'ANTONIO DO PRADO', 'R. INDIO TABAJARA, 55', 'GUARULHOS', 'SP', '07132-999');
+INSERT INTO associado(Plano, Nome, Endereço, Cidade, Estado, CEP)
+VALUE ('B3', 'WILSON SENA', 'R. ARAPIRACA, 1234', 'OSASCO', 'SP', '06293-001');
+INSERT INTO associado(Plano, Nome, Endereço, Cidade, Estado, CEP)
+VALUE ('B3', 'SILVIA DE ABREU', 'R. DR JOAO DA SILVA, 5', 'SANTO ANDRE', 'SP', '09172-112');
+INSERT INTO associado(Plano, Nome, Endereço, Cidade, Estado, CEP)
+VALUE ('E1', 'ODETE DA CONCEICAO', 'R. VOLUNTARIOS DA PATRIA, 10', 'SAO PAULO', 'SP', '02010-550');
+INSERT INTO associado(Plano, Nome, Endereço, Cidade, Estado, CEP)
+VALUE ('E2', 'JOAO CARLOS MACEDO', 'R. VISTA ALEGRE, 500', 'SAO PAULO', 'SP', '04343-990');
+INSERT INTO associado(Plano, Nome, Endereço, Cidade, Estado, CEP)
+VALUE ('E3', 'CONCEICAO DA SILVA', 'AV. VITORINO DO AMPARO, 11', 'MAUA', 'SP', '09312-998');
+INSERT INTO associado(Plano, Nome, Endereço, Cidade, Estado, CEP)
+VALUE ('E3', 'PAULO BRUNO AMARAL', 'R. ARGENZIO BRILHANTE, 88', 'BARUERI', 'SP', '06460-990');
+INSERT INTO associado(Plano, Nome, Endereço, Cidade, Estado, CEP)
+VALUE ('E3', 'WALDENICE DE OLIVEIRA', 'R. OURO VELHO, 12', 'BARUERI', 'SP', '06460-998');
+
+UPDATE associado
+SET CEP = '06460-999'
+WHERE Nome = 'PAULO BRUNO AMARAL';
+
+INSERT INTO associado(Plano, Nome, Endereço, Cidade, Estado, CEP)
+VALUE ('E3', 'MARCOS DO AMARAL', 'R. DO OUVIDOR, 67', 'GUARULHOS', 'SP', '07031-555');
+INSERT INTO associado(Plano, Nome, Endereço, Cidade, Estado, CEP)
+VALUE ('E3', 'MURILO DE SANTANA', 'R.PRATA DA CASA', 'BARUERI', 'SP', '06455-111');
+
+UPDATE associado
+SET Endereço = 'R. PRATA DA CASA'
+WHERE Nome = 'MURILO DE SANTANA';
+
+ALTER TABLE associado
+RENAME COLUMN Endereço TO Endereco;
+
+UPDATE associado
+SET Plano = 'M1'
+WHERE Nome = 'MURILO DE SANTANA';
+
+INSERT INTO associado(Plano, Nome, Endereco, Cidade, Estado, CEP)
+VALUE ('M1', 'LUIZA ONOFRE FREITAS', 'R. VICENTE DE ABREU, 55', 'SANTO ANDRE', 'SP', '09060-667');
+INSERT INTO associado(Plano, Nome, Endereco, Cidade, Estado, CEP)
+VALUE ('M2', 'MELISSA DE ALMEIDA', 'R. FERNANDO ANTONIO, 2345', 'SAO PAULO', 'SP', '04842-987');
+INSERT INTO associado(Plano, Nome, Endereco, Cidade, Estado, CEP)
+VALUE ('M2', 'JOAO INACIO DA CONCEICAO', 'R. PENELOPE CHARMOSA, 34', 'SUZANO', 'SP', '08670-888');
+INSERT INTO associado(Plano, Nome, Endereco, Cidade, Estado, CEP)
+VALUE ('B3', 'AUGUSTA DE ABREU', 'AV. RIO DA SERRA, 909', 'SANTO ANDRE', 'SP', '09061-333');
+INSERT INTO associado(Plano, Nome, Endereco, Cidade, Estado, CEP)
+VALUE ('B3', 'ILDA DE MELO DA CUNHA', 'AV. POR DO SOL, 546', 'SANTO ANDRE', 'SP', '09199-444');
+INSERT INTO associado(Plano, Nome, Endereco, Cidade, Estado, CEP)
+VALUE ('B3', 'MARCOS DA CUNHA', 'AV. PEDROSO DE MORAES, 546', 'SAO PAULO', 'SP', '04040-444');
+
+SELECT * FROM associado;
+-- campo Plano
+USE longa_vida;
+SELECT * FROM plano INNER JOIN associado
+ON associado.Plano = plano.Numero;
+SELECT COUNT(Plano) AS QTDE_B1 FROM associado
+WHERE Plano = 'B1';
+SELECT associado.Nome, associado.Plano, CONCAT('R$ ', FORMAT(plano.Valor, 2)) AS Valor FROM associado
+LEFT JOIN plano 
+ON associado.Plano = plano.Numero;
+SELECT Nome, Cidade FROM associado
+WHERE Cidade = 'cotia' OR Cidade = 'diadema';
+SELECT associado.Nome, associado.Plano, CONCAT('R$ ', FORMAT(plano.Valor,2)) AS Valor FROM associado
+LEFT JOIN plano
+ON associado.Plano = plano.Numero
+WHERE associado.Cidade = 'barueri' AND associado.plano = 'M1';
+
+USE longa_vida;
+SELECT associado.Nome, associado.Plano, CONCAT('R$ ', FORMAT(plano.Valor,2)) AS Valor FROM associado
+LEFT JOIN plano
+ON associado.Plano = plano.Numero
+WHERE associado.Cidade = 'sao paulo';
+
+USE longa_vida;
+SELECT * FROM associado INNER JOIN plano
+WHERE Nome LIKE '%silva%'
+
+USE longa_vida;
+UPDATE plano
+SET Valor = Valor * 1.1
+WHERE Numero LIKE '%B%';
+
+USE longa_vida;
+UPDATE plano
+SET Valor = Valor * 1.05
+WHERE Numero LIKE '%E%';
+
+USE longa_vida;
+UPDATE plano
+SET Valor = Valor * 1.03
+WHERE Numero LIKE '%M%';
+
+SELECT Valor, Numero FROM plano;
+
+USE longa_vida;
+
+UPDATE associado
+SET plano = 'E3'
+WHERE Nome = 'PEDRO JOSE DE OLIVEIRA';
+
+SELECT * FROM associado INNER JOIN plano 
+ON associado.Plano = plano.Numero;
+
+USE longa_vida;
+SELECT COUNT(Nome) AS Qtde_E3 FROM associado
+WHERE Plano = 'E3';
+
+USE longa_vida;
+SELECT associado.Nome, plano.Valor FROM associado
+INNER JOIN plano 
+ON associado.Plano = plano.Numero
+WHERE (associado.Plano = 'B1' OR associado.Plano = 'E1' OR associado.Plano = 'M1')
+GROUP BY associado.Nome;
+
+USE longa_vida;
+SELECT Nome, Plano from associado
+WHERE Plano LIKE 'E%';
+
+USE longa_vida;
+SELECT Nome FROM associado
+WHERE Plano LIKE 'B%' OR Plano LIKE 'M%';
+
+USE longa_vida;
+DELETE FROM associado 
+WHERE Cidade = 'santo andre';
+
+SELECT * FROM associado;
+
+USE longa_vida;
+SELECT associado.Nome, associado.Plano, CONCAT('R$ ', FORMAT(plano.Valor,2)) AS Valor FROM associado
+INNER JOIN plano
+ON associado.Plano = plano.Numero
+WHERE (associado.Cidade = 'sao paulo' AND associado.plano = 'm2') OR (associado.Cidade = 'sao paulo' AND associado.plano = 'm3')
+ORDER BY Nome;
+
+select plano, nome from associado;
+
+-- corrigindo o plano de MARCOS DA CUNHA
+UPDATE associado
+SET Plano = 'M3'
+WHERE Nome = 'MARCOS DA CUNHA';
+
+USE longa_vida;
+SELECT * FROM associado INNER JOIN plano
+ON associado.Plano = plano.Numero 
+ORDER BY plano.Numero;
+
+USE longa_vida;
+SELECT * FROM associado INNER JOIN plano
+ON associado.Plano = plano.Numero
+ORDER BY associado.Plano ASC, associado.Nome DESC;
+
+USE longa_vida;
+SELECT * FROM associado
+WHERE Plano NOT LIKE 'm%';
+
+USE longa_vida;
+SELECT associado.Nome, plano.Descricao FROM associado
+INNER JOIN plano
+ON associado.Plano = plano.Numero
+ORDER BY associado.Nome ASC;
+
+USE longa_vida;
+SELECT Valor FROM plano
+WHERE Valor >= 300 AND Valor <= 500;
+
+USE longa_vida;
+SELECT associado.Nome, associado.Plano, plano.Descricao, CONCAT('R$ ', FORMAT(plano.Valor,2)) AS Valor FROM associado
+INNER JOIN plano
+ON associado.Plano = plano.Numero
+WHERE NOME LIKE '%amaral%';
+
+
+USE longa_vida;
+SELECT Nome FROM associado
+WHERE Cidade = 'Diadema';
+
+USE longa_vida;
+UPDATE plano
+SET Valor = Valor * 1.06
+WHERE Numero LIKE 'M%';
+
+USE longa_vida;
+SELECT Nome FROM associado
+WHERE CEP LIKE '09%';
+
+at.4
+
+CREATE SCHEMA escola;
+
+CREATE TABLE aluno(
+ra VARCHAR(6),
+nome VARCHAR(10),
+nascimento DATE,
+PRIMARY KEY (ra));
+
+USE escola;
+INSERT INTO aluno(ra, nome, nascimento)
+VALUES('123456', 'Ana', '1972/01/10');
+INSERT INTO aluno(ra, nome, nascimento)
+VALUES('123457', 'Bianca', '1973/02/11');
+INSERT INTO aluno(ra, nome, nascimento)
+VALUES('123458', 'Carla', '1987/12/12');
+INSERT INTO aluno(ra, nome, nascimento)
+VALUES('123459', 'Danilo', '1990/10/02');
+INSERT INTO aluno(ra, nome, nascimento)
+VALUES('123460', 'Eliana', '1987/01/01');
+
+CREATE TABLE curso(
+codigo VARCHAR(1),
+nome VARCHAR(10),
+ch VARCHAR(3),
+inicio DATE,
+termino DATE,
+PRIMARY KEY(codigo));
+
+USE escola;
+INSERT INTO curso(codigo, nome, ch, inicio, termino)
+VALUES('1', 'java', '360', '2007/12/01', '2008/10/10');
+INSERT INTO curso(codigo, nome, ch, inicio, termino)
+VALUES('2', 'auto cad', '60', '2008/01/10', '2008/05/10');
+INSERT INTO curso(codigo, nome, ch, inicio, termino)
+VALUES('3', 'php', '90', '2008/02/15', '2008/07/10');
+INSERT INTO curso(codigo, nome, ch, inicio, termino)
+VALUES('4', 'redes', '60', '2008/01/20', '2008/03/20');
+
+CREATE TABLE matricula(
+curso VARCHAR(1),
+ra VARCHAR(6),
+data_matricula DATE,
+valor DECIMAL (5,2));
+
+USE escola;
+INSERT INTO matricula(curso, ra, data_matricula, valor)
+VALUES('1', '123456', '2007/09/10', 100);
+INSERT INTO matricula(curso, ra, data_matricula, valor)
+VALUES('3', '123456', '2007/10/01', 60);
+INSERT INTO matricula(curso, ra, data_matricula, valor)
+VALUES('1', '123457', '2007/09/01', 100);
+INSERT INTO matricula(curso, ra, data_matricula, valor)
+VALUES('2', '123458', '2008/01/11', 50);
+INSERT INTO matricula(curso, ra, data_matricula, valor)
+VALUES('2', '123459', '2007/07/20', 50);
+INSERT INTO matricula(curso, ra, data_matricula, valor)
+VALUES('1', '123460', '2007/08/10', 80);
+
+SELECT * FROM matricula;
+
+USE escola;
+
+SELECT * FROM aluno 
+INNER JOIN matricula
+ON aluno.ra = matricula.ra
+INNER JOIN curso
+ON matricula.curso = curso.codigo;
+
+SELECT aluno.ra, aluno.nome AS aluno, curso.nome AS curso FROM (aluno 
+INNER JOIN matricula
+ON aluno.ra = matricula.ra
+INNER JOIN curso
+ON matricula.curso = curso.codigo);
+
+USE escola;
+SELECT * FROM aluno INNER JOIN matricula
+ON aluno.ra = matricula.ra
+INNER JOIN curso
+ON curso.codigo = matricula.curso;
+
+USE escola;
+SELECT aluno.ra, aluno.nome AS aluno, curso.nome AS curso FROM ( aluno INNER JOIN matricula
+ON aluno.ra = matricula.ra
+INNER JOIN curso
+ON curso.codigo = matricula.curso)
+ORDER BY curso.nome ASC;
+
+USE escola;
+SELECT * FROM curso INNER JOIN matricula
+ON curso.codigo = matricula.curso
+INNER JOIN aluno
+ON matricula.ra = aluno.ra;
+
+USE escola;
+SELECT curso.nome AS curso , COUNT(aluno.nome) AS qtde_alunos FROM (curso INNER JOIN matricula
+ON curso.codigo = matricula.curso
+INNER JOIN aluno
+ON matricula.ra = aluno.ra)
+GROUP BY curso.nome;
+
+USE escola;
+SELECT curso.nome, COUNT(matricula.curso) AS qtde_aluno FROM curso
+LEFT JOIN matricula
+ON curso.codigo = matricula.curso
+GROUP BY curso.nome;
+
+USE escola;
+SELECT curso.nome AS curso, CONCAT('R$ ' , SUM(matricula.valor)) as Valor_total FROM curso
+RIGHT JOIN matricula
+ON curso.codigo = matricula.curso
+GROUP BY curso.nome;
+
+USE escola;
+SELECT curso.nome AS curso, CONCAT('R$ ', SUM(matricula.valor)) AS Total FROM curso
+INNER JOIN matricula
+ON curso.codigo = matricula.curso
+GROUP BY curso.nome;
+
+USE escola;
+SELECT CONCAT('R$ ', SUM(Valor)) AS valor_total_matriculas FROM matricula;
+
+USE escola;
+SELECT CONCAT('R$ ', FORMAT(AVG(Valor),2)) AS media FROM matricula;
+
+USE escola;
+SELECT curso.nome AS curso, CONCAT('R$ ', FORMAT(AVG(matricula.valor),2)) AS valor_medio FROM curso
+INNER JOIN matricula
+ON curso.codigo = matricula.curso
+GROUP BY curso.nome;
+
+USE escola;
+SELECT curso.nome AS curso, COUNT(matricula.curso) AS qtde_alunos FROM curso
+INNER JOIN matricula
+ON curso.codigo = matricula.curso
+GROUP BY curso.nome
+HAVING COUNT(matricula.curso) >=2; 
+
+USE escola;
+SELECT ch FROM curso
+WHERE nome = 'auto cad';
+
+USE escola;
+SELECT nome FROM curso
+WHERE ch = (SELECT ch FROM curso
+WHERE nome = 'auto cad') AND nome <> 'auto cad';
+
+USE escola;
+SELECT MONTH(nascimento) FROM aluno
+WHERE nome = 'Ana';
+
+USE escola;
+SELECT nome AS aluno FROM aluno
+WHERE MONTH(nascimento) = (SELECT MONTH(nascimento) FROM aluno
+WHERE nome = 'Ana') AND nome <> 'Ana';
+
+USE escola;
+SELECT curso.nome as curso, DATE_FORMAT(curso.inicio, '%m/%Y') AS inicio, COUNT(matricula.curso) AS qtde_matricula FROM curso
+RIGHT JOIN matricula
+ON curso.codigo = matricula.curso
+WHERE DATE_FORMAT(curso.inicio, '%m/%Y') = '01/2008'
+GROUP BY curso.nome; 
+
+
+USE escola;
+SELECT curso.nome as curso, DATE_FORMAT(curso.inicio, '%m/%Y') AS inicio, COUNT(matricula.curso) AS qtde_matricula FROM curso
+LEFT JOIN matricula
+ON curso.codigo = matricula.curso
+WHERE DATE_FORMAT(curso.inicio, '%m/%Y') = '01/2008'
+GROUP BY curso.nome;
+
+USE escola;
+SELECT * FROM aluno
+INNER JOIN matricula
+ON aluno.ra = matricula.ra
+INNER JOIN curso
+ON matricula.curso = curso.codigo;
+
+USE escola;
+SELECT aluno.nome AS aluno, curso.nome AS curso, matricula.data_matricula AS data_matricula, curso.inicio,
+CASE 
+	WHEN DATEDIFF(curso.inicio, matricula.data_matricula) > 0 THEN 'sim'
+    ELSE 'nao'
+    END AS brinde
+FROM (aluno
+INNER JOIN matricula
+ON aluno.ra = matricula.ra
+INNER JOIN curso
+ON matricula.curso = curso.codigo)
+GROUP BY matricula.data_matricula
+HAVING DATEDIFF(curso.inicio, matricula.data_matricula) > 0;
+
+/* se estivessemos no ano de 2008 ou 2007 mostraria a lista de cursos.
+De qualquer maneira, segue a lógica: */
+
+
+USE escola;
+SELECT nome AS curso, inicio AS data_inicio FROM curso
+WHERE DATEDIFF(inicio, current_date()) > 0
+GROUP BY curso;
+
+USE escola;
+SELECT aluno.nome AS aluno, DAYNAME(matricula.data_matricula) AS dia_matricula,
+CASE
+	WHEN DAYNAME(matricula.data_matricula) = 'saturday' THEN 'sim'
+    ELSE 'nao'
+    END AS brinde
+FROM aluno INNER JOIN matricula
+ON aluno.ra = matricula.ra
+GROUP BY matricula.data_matricula;
+
+USE escola;
+SELECT aluno.nome, DAYNAME(matricula.data_matricula) AS dia_matricula, CONCAT('R$ ', matricula.valor) AS valor,
+CASE 
+	WHEN DAYNAME(matricula.data_matricula) = 'saturday' THEN CONCAT('R$ ', FORMAT(matricula.valor * 0.5, 2))
+	ELSE 'sem desconto'
+    END AS desconto_matricula
+FROM aluno
+LEFT JOIN matricula
+ON matricula.ra = aluno.ra
+GROUP BY matricula.data_matricula;
+
+USE escola;
+SELECT aluno.nome, TIMESTAMPDIFF(YEAR, aluno.nascimento, CURRENT_DATE) as idade FROM aluno
+GROUP BY aluno.nome;
+
+USE escola;
+SELECT curso.nome, PERIOD_DIFF(DATE_FORMAT(curso.termino, '%Y%m'), DATE_FORMAT(curso.inicio, '%Y%m')) AS duracao_curso FROM curso
+GROUP BY curso.nome;
