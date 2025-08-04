@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<body bgcolor="#87CEEB">
+
+<head>
+    <meta charset="UTF-8">
+	<img src="https://botucatuonline.com/wp-content/uploads/2023/08/compras-app.jpg" alt="Texto alternativo" title="Avatar" #tamfixo/>
+    <title>Loja de Produtos</title>
+</head>
+<body>
+    <h1>Bem-vindo à nossa rede de supermecados online! </h1>
+	    <p><h2>Aqui você vai encontrar prodrutos de sua preferências. Diversas promoções, descontos e produtos de qualidades, diretamente do conforto do seu lar! </h2></p>
+
+    <p><h3>Produtos em promoção:</h3></p>
+
+      	<img src="https://http2.mlstatic.com/D_NQ_NP_625852-MLB76631910463_052024-O.webp" alt="Texto alternativo" title="Avatar" #tamfixo/>
+		<h4>Chocoloates - Qualquer barra de chocolate por apenas R$: 3,99</h4>
+		
+		<img src="https://cdn.pixabay.com/photo/2023/08/16/10/09/oranges-8193789_1280.jpg" alt="Texto alternativo" title="Avatar" #tamfixo/>
+		<h4>Laranjas - Laranjas por R$: 1,99 kg</h4>
+		
+		<img src="https://beefpoint.com.br/wp-content/uploads/2023/12/Foto-1440px-x-960px-63-1-1200x675.png" alt="Texto alternativo" title="Avatar" #tamfixo/>
+		<h4>Carnes - Qualquer tipo de carne com 10% de desconto</h4>
+		
+		<img src="https://media.gazetadopovo.com.br/2023/06/27170407/12549968-NEGRESCOBISCRECHEADO66x90gBRENVOLT-44243622-1-960x540.jpg" alt="Texto alternativo" title="Avatar" #tamfixo/>
+		<h4>Bolachas - Bolacha Negresco Nestlé por R$: 2,99 </h4>
+		
+		
+		<strong><h3>Essas são apenas algumas promoções e desconto dos nossos supermecados.</h3>
+		<h3>Seja inteligente, escolha o melhor.</h3>
+				<h3>Escolha a gente!!.</h3></strong>
+</body>
+</html>
