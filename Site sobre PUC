@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PUC PR - Pontifícia Universidade Católica do Paraná</title>
+  <style>
+    /* CSS Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #003366;
+      line-height: 1.4;
+      background: #f9faff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: #004a99;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      background-color: #003366;
+      color: white;
+      padding: 0.5rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.2);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: 0.08rem;
+      color: #f1f1f1;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    nav a {
+      font-weight: 600;
+      padding: 0.3rem;
+      font-size: 0.85rem;
+      transition: color 0.3s;
+    }
+
+    /* Hamburger menu for mobile */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+    }
+    .menu-toggle div {
+      width: 20px;
+      height: 2.5px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        position: fixed;
+        top: 50px;
+        right: 0;
+        background: #003366;
+        flex-direction: column;
+        width: 180px;
+        height: calc(100vh - 50px);
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+      }
+      nav.active {
+        transform: translateX(0%);
+      }
+      .menu-toggle {
+        display: flex;
+      }
+    }
+
+    main {
+      flex-grow: 1;
+      max-width: 900px;
+      margin: 1rem auto;
+      padding: 0 0.8rem;
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 45vh;
+      color: white;
+      text-align: center;
+      background: linear-gradient(
+            rgba(0, 51, 102, 0.75),
+            rgba(0, 51, 102, 0.75)
+          ),
+          url('https://upload.wikimedia.org/wikipedia/commons/6/6d/PUCParana_Logo.jpg') no-repeat center / cover;
+      border-radius: 6px;
+      margin-bottom: 2rem;
+      padding: 0 0.8rem;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      margin-bottom: 0.4rem;
+      font-weight: 700;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+    }
+
+    .hero p {
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 2.5rem;
+    }
+
+    section h2 {
+      font-size: 1.5rem;
+      color: #002244;
+      margin-bottom: 1rem;
+      border-bottom: 2.5px solid #004a99;
+      display: inline-block;
+      padding-bottom: 4px;
+    }
+
+    /* About Section */
+    .about p {
+      font-size: 1rem;
+      max-width: 700px;
+      margin: 0 auto;
+      color: #333;
+    }
+
+    /* Courses Section */
+    .courses {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+      gap: 1.2rem;
+    }
+    .course-card {
+      background: white;
+      border-radius: 6px;
+      box-shadow: 0 3px 8px rgb(0 0 0 / 0.09);
+      padding: 0.8rem;
+      transition: transform 0.25s, box-shadow 0.25s;
+      cursor: default;
+    }
+    .course-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 14px rgb(0 0 0 / 0.13);
+    }
+    .course-card h3 {
+      color: #004a99;
+      margin-bottom: 0.35rem;
+      font-size: 1.1rem;
+    }
+    .course-card p {
+      font-size: 0.9rem;
+      color: #444;
+      line-height: 1.3;
+    }
+
+    /* Research Section */
+    .research-list {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.8rem;
+    }
+    .research-item {
+      background: #e6f0ff;
+      border-radius: 5px;
+      padding: 0.7rem 1rem;
+      flex: 1 1 250px;
+      box-shadow: 0 1px 8px rgb(0 0 0 / 0.06);
+      font-weight: 600;
+      color: #004a99;
+      user-select: none;
+      font-size: 0.9rem;
+    }
+
+    /* News / Events Section */
+    .news-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .news-card {
+      background: white;
+      border-radius: 6px;
+      box-shadow: 0 2px 7px rgb(0 0 0 / 0.09);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.25s ease;
+    }
+    .news-card:hover {
+      box-shadow: 0 6px 15px rgb(0 0 0 / 0.2);
+    }
+    .news-image {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+    }
+    .news-content {
+      padding: 0.8rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .news-content h4 {
+      color: #003366;
+      margin-bottom: 0.4rem;
+      font-size: 1.1rem;
+    }
+    .news-content p {
+      font-size: 0.9rem;
+      color: #555;
+      flex-grow: 1;
+      line-height: 1.3;
+    }
+    .news-content time {
+      font-size: 0.8rem;
+      color: #999;
+      margin-top: 0.5rem;
+      text-align: right;
+    }
+
+    /* Footer */
+    footer {
+      background: #002244;
+      color: #dadedf;
+      padding: 1.3rem 1rem;
+    }
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .footer-section {
+      flex: 1 1 280px;
+      min-width: 280px;
+    }
+    .footer-section h3 {
+      margin-bottom: 0.8rem;
+      font-weight: 700;
+      color: #7da4db;
+      font-size: 1.2rem;
+    }
+    .footer-section p, .footer-section a {
+      font-size: 0.85rem;
+      color: #c1cbd6;
+      line-height: 1.4;
+    }
+    .footer-section a:hover {
+      color: white;
+    }
+
+    .social-icons {
+      margin-top: 0.8rem;
+      display: flex;
+      gap: 0.8rem;
+    }
+    .social-icons a {
+      color: #7da4db;
+      font-size: 1.2rem;
+      transition: color 0.3s;
+    }
+    .social-icons a:hover {
+      color: white;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.5rem;
+      }
+      .hero p {
+        font-size: 0.85rem;
+      }
+      .footer-container {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="logo" aria-label="Logo PUC PR">PUC PR</div>
+      <nav id="nav-menu" aria-label="Main navigation">
+        <a href="#home">Início</a>
+        <a href="#about">Sobre</a>
+        <a href="#courses">Cursos</a>
+        <a href="#research">Pesquisa</a>
+        <a href="#news">Notícias</a>
+        <a href="#contact">Contato</a>
+      </nav>
+      <div class="menu-toggle" id="menu-toggle" aria-label="Alternar menu">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home" role="banner">
+      <h1>Bem-vindo à PUC PR</h1>
+      <p>A Pontifícia Universidade Católica do Paraná - compromisso com a educação, pesquisa e inovação.</p>
+    </section>
+
+    <section class="about" id="about" aria-labelledby="about-title">
+      <h2 id="about-title">Sobre a PUC PR</h2>
+      <p>A PUC PR é uma das principais universidades do Brasil, oferecendo ensino de alta qualidade, infraestrutura moderna e diversas oportunidades para desenvolvimento acadêmico, cultural e social.</p>
+    </section>
+
+    <section class="courses" id="courses" aria-labelledby="courses-title">
+      <h2 id="courses-title">Nossos Cursos</h2>
+      <div class="courses">
+        <article class="course-card" tabindex="0">
+          <h3>Direito</h3>
+          <p>Formação completa para atuar em diversas áreas do Direito, com destaque para ética e responsabilidade social.</p>
+        </article>
+        <article class="course-card" tabindex="0">
+          <h3>Engenharia de Software</h3>
+          <p>Curso focado em desenvolvimento de sistemas, metodologias ágeis e inovação tecnológica.</p>
+        </article>
+        <article class="course-card" tabindex="0">
+          <h3>Medicina</h3>
+          <p>Excelência em formação médica com clínicas modernas e atendimento comunitário.</p>
+        </article>
+        <article class="course-card" tabindex="0">
+          <h3>Administração</h3>
+          <p>Preparação para gestão organizacional, liderança e empreendedorismo em diversos setores.</p>
+        </article>
+        <article class="course-card" tabindex="0">
+          <h3>Arquitetura e Urbanismo</h3>
+          <p>Criatividade e técnica para projetar espaços com foco em sustentabilidade e inovação.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="research" id="research" aria-labelledby="research-title">
+      <h2 id="research-title">Pesquisa e Inovação</h2>
+      <div class="research-list" role="list">
+        <div class="research-item" role="listitem">Sustentabilidade Ambiental</div>
+        <div class="research-item" role="listitem">Tecnologias da Informação</div>
+        <div class="research-item" role="listitem">Saúde e Biotecnologia</div>
+        <div class="research-item" role="listitem">Educação e Sociedade</div>
+        <div class="research-item" role="listitem">Engenharia e Robótica</div>
+      </div>
+    </section>
+
+    <section class="news" id="news" aria-labelledby="news-title">
+      <h2 id="news-title">Notícias Recentes</h2>
+      <div class="news-cards">
+        <article class="news-card" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=400&q=80" alt="Estudantes em laboratório" class="news-image"/>
+          <div class="news-content">
+            <h4>Laboratório de Inovação inaugurado</h4>
+            <p>A PUC PR inaugurou um novo laboratório com equipamentos de última geração para estimular a pesquisa e o desenvolvimento tecnológico.</p>
+            <time datetime="2024-05-15">15 de maio, 2024</time>
+          </div>
+        </article>
+        <article class="news-card" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=400&q=80" alt="Palestra com especialista na universidade" class="news-image"/>
+          <div class="news-content">
+            <h4>Palestra sobre inovação em saúde</h4>
+            <p>Especialistas discutem os avanços e desafios na área da saúde durante palestras presenciais e online.</p>
+            <time datetime="2024-05-10">10 de maio, 2024</time>
+          </div>
+        </article>
+        <article class="news-card" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" alt="Estudantes em aula ao ar livre" class="news-image"/>
+          <div class="news-content">
+            <h4>Projeto de extensão para comunidades locais</h4>
+            <p>A PUC PR apoia projetos sociais que promovem educação ambiental e inclusão social nas comunidades da região.</p>
+            <time datetime="2024-05-01">1 de maio, 2024</time>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact" aria-labelledby="contact-title">
+    <div class="footer-container">
+      <div class="footer-section" aria-label="Contact Information">
+        <h3 id="contact-title">Contato</h3>
+        <p>PUC PR - Pontifícia Universidade Católica do Paraná</p>
+        <p>Rua Imaculada Conceição, 1155 - Prado Velho, Curitiba - PR</p>
+        <p>Telefone: (41) 3271-1000</p>
+        <p>Email: contato@pucpr.br</p>
+      </div>
+      <div class="footer-section" aria-label="Quick Links">
+        <h3>Links Rápidos</h3>
+        <p><a href="#courses">Cursos</a></p>
+        <p><a href="#research">Pesquisa</a></p>
+        <p><a href="#news">Notícias</a></p>
+        <p><a href="#about">Sobre nós</a></p>
+      </div>
+      <div class="footer-section" aria-label="Social Media Links">
+        <h3>Siga-nos</h3>
+        <div class="social-icons" role="list">
+          <a href="https://www.facebook.com/PUCPR" target="_blank" rel="noopener" aria-label="Facebook" role="listitem" title="Facebook">
+            &#x1F426;
+          </a>
+          <a href="https://twitter.com/PUCPR" target="_blank" rel="noopener" aria-label="Twitter" role="listitem" title="Twitter">
+            &#x1F426;
+          </a>
+          <a href="https://www.instagram.com/pucproficial" target="_blank" rel="noopener" aria-label="Instagram" role="listitem" title="Instagram">
+            &#x1F426;
+          </a>
+          <a href="https://www.linkedin.com/school/puc-pr/" target="_blank" rel="noopener" aria-label="LinkedIn" role="listitem" title="LinkedIn">
+            &#x1F426;
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+
+    menuToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
+
