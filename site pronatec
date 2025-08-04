@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>PRONATEC</title>
+    <meta name="description" content="Descrição da minha página">
+    <meta name="keywords" content="HTML, desenvolvimento web, tutorial">
+	
+</head>
+<body>
+<img src="http://arquivo.devmedia.com.br/artigos/Joel_Rodrigues/HTMLBasico/avatar.png" alt="Texto alternativo" title="Avatar" #tamfixo/>
+<img src="arquivo_inexistente.jpg" alt="Texto alternativo" title="Outra figura"/>
+    <!-- Conteúdo da página aqui -->
+		<h1> Disciplina e ferramentas </h1>
+	<h3>Disciplinas que temos:</h3>
+	<ul>
+	<li>Programaçaõ </li>
+	<li>Redes</li>
+	<li>Inglês aplicado</li>
+	<li>Banco de dados</li>
+	<li>Sistemas de informação.</li>
+	
+	<h3>Ferramentas que usamos: </h3>
+	<ul>
+	<li>Excel </li>
+	<li>Word</li>
+	<li>PowerPoint</li> 
+	<li>Portugol</li> 
+	<li>Notepad++</li>	
+	<li>Codeblok. </li>
+	<ul>
+	<h3> Links: </h3> 
+
+	<p><a target="_blank" href="https://www.codeblocks.org/"> CodeBloks,   </a>
+	<a target="_blank" href="https://notepad-plus-plus.org/downloads/">  Notepad++, </a>
+	<a target="_blank" href="https://portugol.dev/">  Portugol. </a></p>
+
+</body>
+</html>
