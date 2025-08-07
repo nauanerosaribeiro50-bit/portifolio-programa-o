@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Consulta de Autopeças</title>
+  <style>
+    /* Reset básico */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f0f0f0;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #2c3e50;
+    }
+
+    /* Container dos cards */
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* Card individual */
+    .card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      width: 230px;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    /* Imagem da peça */
+    .card img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin-bottom: 15px;
+    }
+
+    /* Nome da peça */
+    .card h2 {
+      font-size: 1.2rem;
+      margin: 0 0 10px 0;
+      color: #2980b9;
+      text-align: center;
+    }
+
+    /* Detalhes da peça */
+    .card p {
+      margin: 4px 0;
+      font-size: 0.95rem;
+      width: 100%;
+      text-align: left;
+    }
+
+    /* Responsividade */
+    @media (max-width: 600px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .card {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Consulta de Autopeças</h1>
+
+  <div class="container">
+    <div class="card">
+      <img src="https://static.autopecasmarques.com.br/public/marquesautopecas/imagens/produtos/filtro-de-oleo-fram-ph6607-hb20-picanto-march-livina-sentra-63e129168ffd6.jpg" alt="Filtro de Óleo" />
+      <h2>Filtro de Óleo</h2>
+      <p><strong>Código:</strong> F1234</p>
+      <p><strong>Marca:</strong> FRAM</p>
+      <p><strong>Preço:</strong> R$ 45,00</p>
+    </div>
+
+    <div class="card">
+      <img src="https://31b93296e4855c6e.cdn.gocache.net/loja/imagens/full/vela-super-plus-1-eletrodo-bosch02.png" alt="Velas de Ignição" />
+      <h2>Velas de Ignição</h2>
+      <p><strong>Código:</strong> V5678</p>
+      <p><strong>Marca:</strong> NGK</p>
+      <p><strong>Preço:</strong> R$ 30,00</p>
+    </div>
+
+    <div class="card">
+      <img src="https://a-static.mlcdn.com.br/800x560/bateria-de-carro-moura-flooded-advanced-60ah-12v-polo-positivo-m60gd-mge/batmaxbaterias/a08f436043e011edb8034201ac185019/fd187bbd6c923201400d1d8b4e3f58c6.jpeg" alt="Bateria" />
+      <h2>Bateria</h2>
+      <p><strong>Código:</strong> B9101</p>
+      <p><strong>Marca:</strong> Moura</p>
+      <p><strong>Preço:</strong> R$ 350,00</p>
+    </div>
+
+    <div class="card">
+      <img src="https://marquinhom.vteximg.com.br/arquivos/ids/208547-1000-1000/pastilha-de-freio-factor-125--fazer-150-dianteiro--n-max-traseiro--r3-traseiro---cobreq-05342.jpg?v=638284806449930000" alt="Pastilha de Freio" />
+      <h2>Pastilha de Freio</h2>
+      <p><strong>Código:</strong> P1121</p>
+      <p><strong>Marca:</strong> TRW</p>
+      <p><strong>Preço:</strong> R$ 80,00</p>
+    </div>
+
+    <div class="card">
+      <img src="https://v0.betalabs.cloud/uploads/gestao_ja/produto/produto_foto/thumb/565x4305b6a3a9b00e9d19a33272f5358eef1b8.jpg" alt="Velas de Ignição" />
+      <h2>Cilindro/Pistão</h2>
+      <p><strong>Código:</strong> V5678</p>
+      <p><strong>Marca:</strong> KMP</p>
+      <p><strong>Preço:</strong> R$ 30,00</p>
+    </div>
+
+    <div class="card">
+      <img src="https://www.tecfil.com.br/wp-content/uploads/2022/01/IMAGEM-5_-RADIADOR-DO-CARRO.jpg" alt="Bateria" />
+      <h2>Radiador </h2>
+      <p><strong>Código:</strong> B9101</p>
+      <p><strong>Marca:</strong> Moura</p>
+      <p><strong>Preço:</strong> R$ 250,00</p>
+    </div>
+
+
+  </div>
+  <!-- ... SEU CÓDIGO HTML ANTERIOR AQUI ... -->
+
+<!-- Fim da div .container -->
+</div>
+<h2 style="text-align: center; margin-top: 40px;">Cadastrar Nova Peça</h2>
+<form action="sucesso.html" method="get" style="
+  background: white;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+">
+  <label for="nome"><strong>Nome da Peça:</strong></label>
+  <input type="text" id="nome" name="nome" required placeholder="Ex: Amortecedor" style="width: 100%; padding: 8px; margin-bottom: 10px;" />
+
+  <label for="codigo"><strong>Código:</strong></label>
+  <input type="text" id="codigo" name="codigo" required placeholder="Ex: A1234" style="width: 100%; padding: 8px; margin-bottom: 10px;" />
+
+  <label for="marca"><strong>Marca:</strong></label>
+  <input type="text" id="marca" name="marca" required placeholder="Ex: Cofap" style="width: 100%; padding: 8px; margin-bottom: 10px;" />
+
+  <label for="preco"><strong>Preço:</strong></label>
+  <input type="text" id="preco" name="preco" required placeholder="Ex: R$ 120,00" style="width: 100%; padding: 8px; margin-bottom: 10px;" />
+
+  <button type="submit" style="
+    width: 100%;
+    padding: 10px;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  ">Cadastrar Peça</button>
+</form>
+
+
+</body>
+</html>
+
+
+</body>
+</html>
