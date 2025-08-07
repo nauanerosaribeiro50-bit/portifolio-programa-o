@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>O Boticário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #006400;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #006400;
+        }
+
+        article {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        footer {
+            background-color: #eee;
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>O Boticário</h1>
+        <nav>
+            <ul>
+                <li><a href="produt.html">Perfumes e produtos para corpo</a></li>
+                <li><a href="presentes.html">Presentes</a></li>
+            
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Destaques</h2>
+            <article>
+                <h3>Perfume Floratta</h3>
+                <p>Uma fragrância envolvente e marcante para todos os momentos.</p>
+                <p><strong>Preço:</strong> R$ 139,90</p>
+            </article>
+            <article>
+                <h3>Combo Cuidados com o Corpo</h3>
+                <p>Hidratante + Esfoliante para deixar sua pele macia e perfumada.</p>
+                <p><strong>Preço:</strong> R$ 89,90</p>
+            </article>
+        </section>
+
+        <section>
+            <h2>Mais Vendidos</h2>
+            <ul>
+                <li>Malbec Desodorante Colônia</li>
+                <li>Creme Acetinado Lily</li>
+                <li>Base Make B.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 O Boticário - Todos os direitos reservados.</p>
+        <p>Atendimento ao Cliente: 0800 000 0000</p>
+    </footer>
+</body>
+</html>
+
+PAGINA 2
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Produtos - O Boticário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #006400;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: #006400;
+        }
+
+        article {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        footer {
+            background-color: #eee;
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>O Boticário</h1>
+        <nav>
+            <ul>
+                <li><a href="exerc.html">Início</a></li>
+                <li><a href="presentes.html">Presentes</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Perfumes</h2>
+            <article>
+                <h3>Malbec Clássico</h3>
+                <p>Fragrância intensa e sofisticada, ideal para ocasiões especiais.</p>
+                <p><strong>Preço:</strong> R$ 179,90</p>
+            </article>
+            <article>
+                <h3>Lily Eau de Parfum</h3>
+                <p>Um perfume floral e elegante com notas de lírio.</p>
+                <p><strong>Preço:</strong> R$ 229,90</p>
+            </article>
+        </section>
+        <section>
+            <h2>Produtos para o Corpo</h2>
+            <article>
+                <h3>Loção Hidratante Nativa SPA Ameixa</h3>
+                <p>Hidratação profunda com fragrância marcante de ameixa.</p>
+                <p><strong>Preço:</strong> R$ 49,90</p>
+            </article>
+            <article>
+                <h3>Esfoliante Corporal Cuide-se Bem</h3>
+                <p>Remove impurezas e renova a pele, deixando-a macia.</p>
+                <p><strong>Preço:</strong> R$ 39,90</p>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 O Boticário - Todos os direitos reservados.</p>
+        <p>Atendimento: 0800 000 0000</p>
+    </footer>
+</body>
+</html>
+
+
+PAGINA 3
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Presentes - O Boticário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #006400;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: #006400;
+        }
+
+        article {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        footer {
+            background-color: #eee;
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>O Boticário</h1>
+        <nav>
+            <ul>
+                <li><a href="exerc.html">Início</a></li>
+                <li><a href="produt.html">Produtos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Presentes Especiais</h2>
+            <article>
+                <h3>Kit Malbec - O Presente Perfeito</h3>
+                <p>Composto por desodorante colônia e loção hidratante, perfeito para quem aprecia sofisticação e elegância.</p>
+                <p><strong>Preço:</strong> R$ 229,90</p>
+            </article>
+            <article>
+                <h3>Caixa de Presentes Lily</h3>
+                <p>Contém um perfume delicado e um creme acetinado para cuidar da pele com a suavidade das flores.</p>
+                <p><strong>Preço:</strong> R$ 199,90</p>
+            </article>
+            <article>
+                <h3>Kit Cuidados Nativa SPA - Corpo e Alma</h3>
+                <p>Este kit é a opção ideal para quem ama cuidar de si mesma, com creme hidratante e esfoliante corporal.</p>
+                <p><strong>Preço:</strong> R$ 129,90</p>
+            </article>
+        </section>
+
+        <section>
+            <h2>Presentes para Todos os Momentos</h2>
+            <article>
+                <h3>Perfume Egeo - A Energia de um Presente</h3>
+                <p>Com notas vibrantes e refrescantes, o perfume Egeo é uma opção excelente para quem busca frescor e elegância.</p>
+                <p><strong>Preço:</strong> R$ 169,90</p>
+            </article>
+            <article>
+                <h3>Caixa de Maquiagem Make B.</h3>
+                <p>Para quem ama maquiagem, esse kit completo com batons e sombras é a escolha ideal para um presente de beleza.</p>
+                <p><strong>Preço:</strong> R$ 159,90</p>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 O Boticário - Todos os direitos reservados.</p>
+        <p>Atendimento: 0800 000 0000</p>
+    </footer>
+</body>
+</html>
+
+
+
+
+
+
+
