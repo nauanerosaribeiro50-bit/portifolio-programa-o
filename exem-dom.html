@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+ <meta charset="UTF-8">
+ <title>Exemplo Completo DOM</title>
+ <style>
+ /* Estilo da caixa animada */
+ #box {
+ width: 100px;
+ height: 100px;
+ background-color: red;
+ margin-top: 20px;
+ transition: transform 0.5s, background-color 0.5s;
+ }
+ /* Classe para animação */
+ .animado {
+ transform: translateX(100px);
+ background-color: green;
+ }
+ /* Estilo da classe destaque */
+ .destaque {
+ background-color: yellow;
+ padding: 10px;
+ border: 1px solid black;
+ }
+ </style>
+</head>
+<body>
+ <!-- 4.1 Estrutura básica do DOM -->
+ <h1 id="titulo">Bem-vindo ao DOM!</h1>
+ <p class="descricao">Este parágrafo será manipulado com JavaScript.</p>
+ <!-- Botão para alterar texto -->
+ <button onclick="alterarTexto()">Alterar Texto</button>
+ <!-- Botão para mostrar manipulação de estilos -->
+ <button onclick="estilizar()">Estilizar Título</button>
+ <!-- Botão para animação -->
+ <button onclick="animar()">Animar Caixa</button>
+ <!-- Caixa que será animada -->
+ <div id="box"></div>
+ <!-- Outro botão para testar evento via addEventListener -->
+ <button id="botaoEvento">Clique (Evento)</button>
+ <!-- 4.2 até 4.7: Script com todas as ações -->
+ <script>
+ // 4.2 Seleção de elementos
+ const titulo = document.getElementById("titulo");
+ const descricao = document.querySelector(".descricao");
+ // 4.3 Manipulação de elementos - Função chamada no botão
+ function alterarTexto() {
+ descricao.textContent = "Texto alterado com sucesso!";
+ // Criar e adicionar novo parágrafo
+ const novoParagrafo = document.createElement("p");
+ novoParagrafo.textContent = "Parágrafo criado dinamicamente.";
+ document.body.appendChild(novoParagrafo);
+ }
+ // 4.4 Navegação no DOM
+ console.log("Pai do título:", titulo.parentNode);
+ console.log("Próximo irmão do título:", titulo.nextElementSibling);
+ // 4.5 Eventos usando addEventListener
+ const botaoEvento = document.getElementById("botaoEvento");
+ botaoEvento.addEventListener("click", function () {
+ alert("Você clicou no botão usando addEventListener!");
+ });
+ // 4.6 Manipulação de estilos e classes
+ function estilizar() {
+ titulo.style.color = "blue";
+ titulo.style.fontSize = "28px";
+ titulo.classList.toggle("destaque");
+ }
+ // 4.7 Animações e transições
+ function animar() {
+ const box = document.getElementById("box");
+ box.classList.toggle("animado");
+ }
+ </script>
+</body>
+</html>

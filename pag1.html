@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Página Pessoal com Frames</title>
+ <style>
+ /* Estilizando o layout da página */
+ body {
+    background-color: #c6abe4;
+   font-family: serif, sans-serif;
+   margin: 0;
+   padding: 0;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: flex-start;
+   min-height: 100vh;
+ }
+ header {
+   background-color: #b79bd6;
+   color: #000000;
+   width: 100%;
+   padding: 20px;
+   text-align: center;
+ }
+ .content {
+   display: flex;
+   width: 100%;
+   height: 100vh;
+ }
+ /* Coluna da esquerda */
+ .sidebar {
+   width: 15%;
+   background-color: #cbb3e5;
+   padding: 20px;
+   box-sizing: border-box;
+ }
+ /* Coluna principal */
+ .main-content {
+   width: 85%;
+   padding: 20px;
+   box-sizing: border-box;
+ }
+ iframe {
+   width: 100%;
+   height: 500px;
+   border: none;
+ }
+ img {
+   width: 30%; 
+   height: auto; 
+   max-width: 100%; 
+ }
+ h1 {
+   font-size: 2em;
+   margin-bottom: 10px;
+ }
+ </style>
+</head>
+<body>
+ <header>
+   <h1>Sobre mim!</h1>
+ </header>
+ <div class="content">
+   <!-- Sidebar com links -->
+   <div class="sidebar">
+     <h2>Menu</h2>
+     <ul>
+       <li><a href="minhapag.html" class="button">Voltar ao ínicio.</a></li>
+     </ul>
+   </div>
+   <!-- Conteúdo principal com iframes -->
+   <div class="main-content">
+     <!-- Exibindo imagem ao invés de iframe -->
+     <section id="frame">
+      <h2>Nauane</h2>
+       <p>Me chamo Nauane, atualmente traabalho no periodo da manhã, faço curso de desenvolvimento de sistemas no periodo da tarde e estudo de noite na E.E.B Industrial de Lages. <br>Eu sou a filha maisa nova, tenho 4 irmãos, sendo 3 guri e 1 guria, e moro com meus pais no bairro caça e tiro. <br>
+        Tenho 2 cachorras e 1 uma gatinha, que também moram com a gente. </p>
+        <h2>Coisas que eu gosto </h2>
+       <ul>
+        <li>Jogar bola</li>
+        <li>Macarrão com carne moída</li>
+        <li>Gatos</li>
+        <li>Motos</li>
+        </ul>
+       <img src="https://i0.wp.com/jornaldecolombo.com.br/wp-content/uploads/2024/05/P5-MATERIA-SUPERIOR-FOTO-EXTRA.jpg?resize=1080%2C675&ssl=1" alt="Imagem do Blog">
+     </section>
+   </div>
+ </div>
+</body>
+</html>

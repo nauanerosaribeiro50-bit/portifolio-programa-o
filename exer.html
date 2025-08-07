@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Exemplos Responsivos Separados</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background: #f5f5f5;
+  }
+  section {
+    background: white;
+    padding: 20px;
+    margin-bottom: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 0.1);
+  }
+  h2 {
+    margin-bottom: 15px;
+    color: #2c3e50;
+  }
+
+  /* 1. Layout Responsivo */
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .box {
+    background: #3498db;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    flex: 1 1 calc(33.333% - 20px);
+    text-align: center;
+    font-weight: bold;
+  }
+
+  /* 2. Menu Responsivo */
+  nav {
+    background: #2c3e50;
+    padding: 15px;
+    margin-bottom: 0;
+    border-radius: 8px;
+  }
+  .menu {
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+  }
+  .menu li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+  }
+  .menu li a:hover {
+    background: #34495e;
+  }
+  .hamburger {
+    display: none;
+    cursor: pointer;
+    color: white;
+    font-size: 24px;
+  }
+
+  /* 3. Imagem Responsiva */
+  .image-container {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+  }
+
+  /* Media Queries */
+  /* Layout Responsivo */
+  @media (max-width: 900px) {
+    .box {
+      flex: 1 1 calc(50% - 20px);
+    }
+  }
+  @media (max-width: 600px) {
+    .box {
+      flex: 1 1 100%;
+    }
+  }
+
+  /* Menu Responsivo */
+  @media (max-width: 768px) {
+    .menu {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      background: #2c3e50;
+      border-radius: 4px;
+    }
+    .menu.active {
+      display: flex;
+    }
+    .hamburger {
+      display: block;
+      user-select: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- 1. Layout Responsivo -->
+<section>
+  <h2>1. Layout Responsivo (3 → 2 → 1 colunas)</h2>
+  <div class="container">
+    <div class="box">Box 1</div>
+    <div class="box">Box 2</div>
+    <div class="box">Box 3</div>
+  </div>
+</section>
+
+<!-- 2. Menu Responsivo -->
+<section>
+  <h2>2. Menu Responsivo (Hamburger no mobile)</h2>
+  <nav>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <ul class="menu" id="menu">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Sobre</a></li>
+      <li><a href="#">Contato</a></li>
+    </ul>
+  </nav>
+</section>
+
+<!-- 3. Imagem Responsiva -->
+<section>
+  <h2>3. Imagem Responsiva com &lt;picture&gt; e srcset</h2>
+  <div class="image-container">
+    <picture>
+      <source media="(min-width: 1024px)" srcset="https://via.placeholder.com/1200x600" />
+      <source media="(min-width: 600px)" srcset="https://via.placeholder.com/800x400" />
+     <section>
+  <img src="https://t2.tudocdn.net/653170?w=824&h=494" />
+</section>
+
+    </picture>
+  </div>
+</section>
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById('menu');
+    menu.classList.toggle('active');
+  }
+</script>
+
+</body>
+</html>

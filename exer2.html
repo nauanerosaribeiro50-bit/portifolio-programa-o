@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Perfil de Usuário</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 2px solid #773737;
+      border-radius: 10px;
+      background-color: #b0e7eb;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .info {
+      margin: 10px 0;
+    }
+    button {
+      padding: 8px 15px;
+      margin-top: 15px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Perfil do Usuário</h1>
+
+  <div class="info">
+    <strong>Nome:</strong> <span id="nome">João Silva</span>
+  </div>
+  <div class="info">
+    <strong>Idade:</strong> <span id="idade">25</span>
+  </div>
+  <div class="info">
+    <strong>Descrição:</strong> <span id="descricao">Desenvolvedor Front-end.</span>
+  </div>
+
+  <button id="editarBtn">Editar Perfil</button>
+  <button id="salvarBtn" style="display: none;">Salvar</button>
+
+  <script>
+    const editarBtn = document.getElementById("editarBtn");
+    const salvarBtn = document.getElementById("salvarBtn");
+
+    const nomeSpan = document.getElementById("nome");
+    const idadeSpan = document.getElementById("idade");
+    const descricaoSpan = document.getElementById("descricao");
+
+    let nomeInput, idadeInput, descricaoInput;
+
+    editarBtn.addEventListener("click", () => {
+      // Criando campos de input com os valores atuais
+      nomeInput = document.createElement("input");
+      nomeInput.value = nomeSpan.textContent;
+
+      idadeInput = document.createElement("input");
+      idadeInput.value = idadeSpan.textContent;
+
+      descricaoInput = document.createElement("input");
+      descricaoInput.value = descricaoSpan.textContent;
+
+      // Substituindo spans por inputs
+      nomeSpan.replaceWith(nomeInput);
+      idadeSpan.replaceWith(idadeInput);
+      descricaoSpan.replaceWith(descricaoInput);
+
+      // Alternando botões
+      editarBtn.style.display = "none";
+      salvarBtn.style.display = "inline-block";
+    });
+
+    salvarBtn.addEventListener("click", () => {
+      // Criando novos spans com os valores atualizados
+      const novoNome = document.createElement("span");
+      novoNome.id = "nome";
+      novoNome.textContent = nomeInput.value;
+
+      const novaIdade = document.createElement("span");
+      novaIdade.id = "idade";
+      novaIdade.textContent = idadeInput.value;
+
+      const novaDescricao = document.createElement("span");
+      novaDescricao.id = "descricao";
+      novaDescricao.textContent = descricaoInput.value;
+
+      // Substituindo inputs por spans
+      nomeInput.replaceWith(novoNome);
+      idadeInput.replaceWith(novaIdade);
+      descricaoInput.replaceWith(novaDescricao);
+
+      // Alternando botões
+      editarBtn.style.display = "inline-block";
+      salvarBtn.style.display = "none";
+    });
+  </script>
+
+</body>
+</html>
