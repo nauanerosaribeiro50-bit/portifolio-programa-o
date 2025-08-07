@@ -1,0 +1,51 @@
+mysql> create database exer1;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> use exer1;
+Database changed
+mysql> CREATE TABLE produtos (
+    ->     id_produto INT PRIMARY KEY AUTO_INCREMENT,
+    ->     nome VARCHAR(100) NOT NULL,
+    ->     preco DECIMAL(10, 2) NOT NULL,
+    ->     quantidade_estoque INT NOT NULL,
+    ->     categoria VARCHAR(50) NOT NULL
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> CREATE TABLE clientes (
+    ->     id_cliente INT PRIMARY KEY AUTO_INCREMENT,
+    ->     nome VARCHAR(100) NOT NULL,
+    ->     email VARCHAR(100) NOT NULL UNIQUE
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> CREATE TABLE pedidos (
+    ->     id_pedido INT PRIMARY KEY AUTO_INCREMENT,
+    ->     cliente_id INT,
+    ->     valor_total DECIMAL(10, 2) NOT NULL,
+    ->     data_pedido DATE NOT NULL,
+    ->     FOREIGN KEY (cliente_id) REFERENCES clientes(id_cliente)
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO produtos (nome, preco, quantidade_estoque, categoria) VALUES
+    -> ('Smartphone XYZ', 1500.00, 30, 'Eletrônicos'),
+    -> ('Laptop ABC', 3000.00, 15, 'Eletrônicos'),
+    -> ('Fone de Ouvido', 200.00, 50, 'Eletrônicos'),
+    -> ('Cadeira Gamer', 800.00, 20, 'Móveis');
+Query OK, 4 rows affected (0.02 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO clientes (nome, email) VALUES
+    -> ('João Silva', 'joao.silva@example.com'),
+    -> ('Maria Oliveira', 'maria.oliveira@example.com'),
+    -> ('Carlos Santos', 'carlos.santos@example.com');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO pedidos (cliente_id, valor_total, data_pedido) VALUES
+    -> (1, 1800.00, '2025-05-01'),
+    -> (1, 500.00, '2025-04-15'),
+    -> (2, 1200.00, '2025-03-20'),
+    -> (3, 2500.00, '2025-02-10');
+Query OK, 4 rows affected (0.01 sec)
