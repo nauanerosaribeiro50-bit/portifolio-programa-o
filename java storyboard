@@ -1,0 +1,139 @@
+// Referências DOM
+const productsGrid = document.getElementById('products-grid');
+const cartCount = document.getElementById('cart-count');
+const cartModal = document.getElementById('cart-modal');
+const cartItemsList = document.getElementById('cart-items');
+const cartTotalEl = document.getElementById('cart-total');
+const cartButton = document.getElementById('cart-button');
+const closeCartBtn = document.getElementById('close-cart');
+const checkoutButton = document.getElementById('checkout-button');
+
+let cart = [];
+
+// Formata preço em reais
+function formatPrice(price) {
+  return price.toFixed(2).replace('.', ',');
+}
+
+// Atualiza o contador do carrinho no header
+function updateCartCount() {
+  const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+  cartCount.textContent = count;
+}
+
+// Atualiza o total do carrinho no modal
+function updateCartTotal() {
+  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  cartTotalEl.textContent = formatPrice(total);
+}
+
+// Renderiza os produtos na página
+function renderProducts() {
+  productsGrid.innerHTML = '';
+  products.forEach(product => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+
+    card.innerHTML = `
+      <img src="${product.image}" alt="${product.name}" />
+      <h3>${product.name}</h3>
+      <p>R$ ${formatPrice(product.price)}</p>
+      <button data-id="${product.id}">Adicionar ao Carrinho</button>
+    `;
+
+    productsGrid.appendChild(card);
+  });
+}
+
+// Renderiza os itens do carrinho no modal
+function renderCart() {
+  cartItemsList.innerHTML = '';
+
+  if (cart.length === 0) {
+    cartItemsList.innerHTML = '<li>Seu carrinho está vazio.</li>';
+    cartTotalEl.textContent = '0,00';
+    return;
+  }
+
+  cart.forEach(item => {
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <span>${item.name} x ${item.quantity}</span>
+      <span>R$ ${formatPrice(item.price * item.quantity)}</span>
+      <button data-id="${item.id}" aria-label="Remover ${item.name} do carrinho">&times;</button>
+    `;
+    cartItemsList.appendChild(li);
+  });
+
+  updateCartTotal();
+}
+
+// Adiciona produto ao carrinho
+function addToCart(id) {
+  const product = products.find(p => p.id === id);
+  if (!product) return;
+
+  const cartItem = cart.find(item => item.id === id);
+  if (cartItem) {
+    cartItem.quantity++;
+  } else {
+    cart.push({ ...product, quantity: 1 });
+  }
+
+  updateCartCount();
+  renderCart();
+}
+
+// Remove produto do carrinho
+function removeFromCart(id) {
+  cart = cart.filter(item => item.id !== id);
+  updateCartCount();
+  renderCart();
+}
+
+// Eventos
+
+// Clique nos botões "Adicionar ao Carrinho"
+productsGrid.addEventListener('click', e => {
+  if (e.target.tagName === 'BUTTON') {
+    const id = parseInt(e.target.getAttribute('data-id'));
+    addToCart(id);
+  }
+});
+
+// Abrir modal do carrinho
+cartButton.addEventListener('click', e => {
+  e.preventDefault();
+  renderCart();
+  cartModal.classList.remove('hidden');
+});
+
+// Fechar modal do carrinho
+closeCartBtn.addEventListener('click', () => {
+  cartModal.classList.add('hidden');
+});
+
+// Remover item do carrinho clicando no botão dentro do modal
+cartItemsList.addEventListener('click', e => {
+  if (e.target.tagName === 'BUTTON') {
+    const id = parseInt(e.target.getAttribute('data-id'));
+    removeFromCart(id);
+  }
+});
+
+// Finalizar compra
+checkoutButton.addEventListener('click', () => {
+  if (cart.length === 0) {
+    alert('Seu carrinho está vazio!');
+    return;
+  }
+  alert('Compra finalizada com sucesso! Obrigado por comprar conosco.');
+  cart = [];
+  updateCartCount();
+  renderCart();
+  cartModal.classList.add('hidden');
+});
+
+// Inicializa a loja
+renderProducts();
+updateCartCount();
