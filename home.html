@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bem-vindo à Loja Virtual</title>
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #004aad, #1e3c72);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .logo-icon {
+      width: 60px;
+      height: 60px;
+      fill: #ffcc00;
+      filter: drop-shadow(0 0 4px rgba(255, 204, 0, 0.7));
+      animation: pulse 3s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .logo-text {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+      user-select: none;
+    }
+
+    .entrar-loja-btn {
+      padding: 1.2rem 4rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 50px;
+      background-color: #ffcc00;
+      color: #004aad;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      text-decoration: none;
+      box-shadow: 0 5px 15px rgba(255, 204, 0, 0.6);
+      user-select: none;
+      display: inline-block;
+    }
+
+    .entrar-loja-btn:hover {
+      background-color: #e6b800;
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(230, 184, 0, 0.9);
+    }
+
+    @media (max-width: 400px) {
+      .logo-text {
+        font-size: 2rem;
+      }
+
+      .logo-icon {
+        width: 45px;
+        height: 45px;
+      }
+
+      .entrar-loja-btn {
+        padding: 1rem 3rem;
+        font-size: 1.2rem;
+      }
+    }
+    .entrar-container {
+  position: relative;
+  display: inline-block;
+  margin-top: 2rem;
+}
+
+/* seta animada para baixo */
+.entrar-container::after {
+  content: "⬇"; /* seta para baixo, você pode trocar */
+  position: absolute;
+  top: -2.5rem;   /* distância acima do botão */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  color: #ffcc00;
+  animation: pulseMove 2s infinite ease-in-out;
+  user-select: none;
+}
+
+/* anotação com texto explicativo */
+.entrar-container::before {
+  content: "Clique para entrar na loja";
+  position: absolute;
+  top: -4.5rem;   /* mais acima que a seta */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1rem;
+  color: #ffcc00;
+  font-weight: 600;
+  text-shadow: 0 0 5px rgba(0,0,0,0.7);
+  user-select: none;
+}
+
+/* animação pulse com movimento leve */
+@keyframes pulseMove {
+  0%, 100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateX(-50%) translateY(5px);
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div class="logo-container" role="banner">
+    <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+      <path d="M16 20v-4a8 8 0 0 1 16 0v4h8a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4V24a4 4 0 0 1 4-4h4zm4-4a4 4 0 0 1 8 0v4H20v-4z"/>
+    </svg>
+    <h1 class="logo-text">GoldenShop</h1>
+  </div>
+
+  <div class="enter-store-container">
+  <a href="index.html" class="entrar-loja-btn" role="button" aria-label="Entrar na loja GoldenShop">
+    Entrar na Loja
+  </a>
+  <div class="annotation" aria-hidden="true">
+    <span class="arrow">→</span> Clique aqui para acessar a loja!
+  </div>
+</div>
+
+</body>
+</html>
