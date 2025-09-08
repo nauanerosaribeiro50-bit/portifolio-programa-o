@@ -1,0 +1,184 @@
+create database site;
+use site;
+
+-- tabela clientes
+CREATE TABLE Cliente (
+    id_cliente INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    senha VARCHAR(100) NOT NULL,
+    telefone VARCHAR(20),
+    cpf CHAR(11) UNIQUE, 
+    endereco VARCHAR(255),
+    data_cadastro DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- tabela produtos
+CREATE TABLE Produto (
+    id_produto INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    descricao TEXT, 
+    preco DECIMAL(10,2) NOT NULL CHECK (preco >= 0),
+    imagem VARCHAR(255),
+    estoque INT DEFAULT 0 CHECK (estoque >= 0),
+    categoria VARCHAR(50)
+);
+
+-- tabela pedidos
+CREATE TABLE Pedido (
+    id_pedido INT AUTO_INCREMENT PRIMARY KEY,
+    id_cliente INT NOT NULL,
+    data_pedido DATETIME DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('Pendente', 'Pago', 'Enviado', 'Entregue', 'Cancelado') DEFAULT 'Pendente',
+    total DECIMAL(10,2) DEFAULT 0,
+    FOREIGN KEY (id_cliente) REFERENCES Cliente(id_cliente)
+);
+
+-- tabela itens por pedido
+CREATE TABLE ItemPedido (
+    id_item INT AUTO_INCREMENT PRIMARY KEY,
+    id_pedido INT NOT NULL,
+    id_produto INT NOT NULL,
+    quantidade INT NOT NULL CHECK (quantidade > 0),
+    preco_unitario DECIMAL(10,2) NOT NULL CHECK (preco_unitario >= 0),
+    FOREIGN KEY (id_pedido) REFERENCES Pedido(id_pedido) ON DELETE CASCADE,
+    FOREIGN KEY (id_produto) REFERENCES Produto(id_produto)
+);
+
+-- tabela msg ctt
+CREATE TABLE MensagemContato (
+    id_mensagem INT AUTO_INCREMENT PRIMARY KEY,
+    id_cliente INT NOT NULL,
+    assunto VARCHAR(100) NOT NULL,
+    mensagem TEXT NOT NULL,
+    data_envio DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_cliente) REFERENCES Cliente(id_cliente)
+);
+
+-- informações clientes
+INSERT INTO Cliente (nome, email, senha, telefone, cpf, endereco) VALUES
+('João Silva', 'joao@email.com', '12345', '(11)99999-1111', '12345678901', 'Rua A, 123 - São Paulo'),
+('Maria Souza', 'maria@email.com', 'abcde', '(11)98888-2222', '98765432100', 'Av. B, 456 - São Paulo'),
+('Carlos Pereira', 'carlos@email.com', 'senha@123', '(21)97777-3333', '45678912300', 'Rua C, 789 - Rio de Janeiro');
+
+-- informações produtos
+INSERT INTO Produto (nome, descricao, preco, imagem, estoque, categoria) VALUES
+('Smartphone X Pro', 'Smartphone de última geração com câmera de 108MP.', 2899.99, 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9', 10, 'Eletrônicos'),
+('Fone de Ouvido Wireless', 'Fone sem fio com cancelamento de ruído.', 399.90, 'https://dcdn-us.mitiendanube.com/stores/...', 20, 'Acessórios'),
+('Smart TV 50 Polegadas', 'TV 4K com HDR e conexão Wi-Fi.', 2599.00, 'https://imgs.casasbahia.com.br/55066184/1g.jpg', 5, 'Eletrônicos'),
+('Notebook Gamer', 'Notebook com placa RTX e 16GB RAM.', 4999.90, 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8', 7, 'Informática'),
+('Smartwatch Série 5', 'Relógio inteligente com monitoramento cardíaco.', 1299.00, 'https://www.apple.com/newsroom/images/...', 15, 'Acessórios'),
+('Tablet Ultra', 'Tablet com tela de 11 polegadas e 128GB.', 1500.00, 'https://m.media-amazon.com/images/I/41FD+UCEn3L._UF894,1000_QL80_.jpg', 8, 'Eletrônicos'),
+('Câmera Digital Pro', 'Câmera profissional 4K com lentes intercambiáveis.', 2100.00, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY2Sw...', 4, 'Fotografia'),
+('Caixa de Som Bluetooth', 'Caixa portátil com 12h de bateria.', 350.00, 'https://lojasbecker.vtexassets.com/arquivos/ids/3712332-800-auto', 25, 'Áudio'),
+('Console de Videogame', 'Console de última geração com 1TB SSD.', 1800.00, 'https://s2-techtudo.glbimg.com/CxNLOWCwew0HitVXxR30JwhQNcE', 6, 'Games'),
+('Monitor 27 Polegadas', 'Monitor Full HD com taxa de 144Hz.', 1200.00, 'https://m.media-amazon.com/images/I/610AB4mxF6L.jpg', 9, 'Informática'),
+('Teclado Mecânico', 'Teclado RGB com switches azuis.', 450.00, 'https://cdn.sistemawbuy.com.br/.../tec-tom-3-6700941d8ca52.jpg', 12, 'Acessórios'),
+('Mouse Gamer RGB', 'Mouse ergonômico com 8 botões.', 300.00, 'https://b2bleonorashop.vtexassets.com/arquivos/ids/161285-800-auto', 18, 'Acessórios');
+
+-- pedido João
+INSERT INTO Pedido (id_cliente, status, total) VALUES (1, 'Pago', 3299.89);
+
+-- itens João
+INSERT INTO ItemPedido (id_pedido, id_produto, quantidade, preco_unitario) VALUES
+(1, 1, 1, 2899.99), -- Smartphone
+(1, 2, 1, 399.90);  -- Fone de ouvido
+
+-- Pedido da Maria
+INSERT INTO Pedido (id_cliente, status, total) VALUES (2, 'Enviado', 2599.00);
+
+-- Itens Maria
+INSERT INTO ItemPedido (id_pedido, id_produto, quantidade, preco_unitario) VALUES
+(2, 3, 1, 2599.00); -- Smart TV
+
+-- Mensagens de Contato
+INSERT INTO MensagemContato (id_cliente, assunto, mensagem) VALUES
+(1, 'Entrega', 'Gostaria de saber o prazo de entrega para São Paulo.'),
+(2, 'Garantia', 'O produto Smartwatch Série 5 tem garantia estendida?'),
+(3, 'Pagamento', 'É possível parcelar em mais de 12x?');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
