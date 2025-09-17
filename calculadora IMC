@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initialscale=1.0">
+ <title>Calculadora de IMC</title>
+ <style>
+ body {
+ font-family: Arial, sans-serif;
+ padding: 20px;
+ text-align: center;
+ }
+ input {
+ margin: 5px;
+ padding: 8px;
+ font-size: 16px;
+ }
+ button {
+ padding: 10px 15px;
+ font-size: 16px;
+ cursor: pointer;
+ }
+ #resultado {
+ margin-top: 20px;
+ font-size: 1.2em;
+ font-weight: bold;
+ }
+ </style>
+</head>
+<body>
+ <h1>Calculadora de IMC</h1>
+ <div>
+ <label for="peso">Peso (kg):</label>
+ <input type="number" id="peso" placeholder="Ex: 70">
+ </div>
+ <div>
+ <label for="altura">Altura (cm):</label>
+ <input type="number" id="altura" placeholder="Ex: 175">
+ </div>
+
+ <button id="calcular">Calcular IMC</button>
+
+ <p id="resultado"></p>
+ <script src="script.js"></script>
+</body>
+</html>
+
+
+
+JAVA 
+
+// 1. Selecionar os elementos do HTML
+const inputPeso = document.getElementById('peso');
+const inputAltura = document.getElementById('altura');
+const btnCalcular = document.getElementById('calcular');
+const resultadoElemento = document.getElementById('resultado');
+// 2. Adicionar o "ouvinte" de clique no botão
+btnCalcular.addEventListener('click', () => {
+ // 3. Obter os valores dos campos e converter para número
+ const peso = Number(inputPeso.value);
+ const alturaCm = Number(inputAltura.value);
+ // Bônus: Validar se os campos estão preenchidos
+ if (peso === 0 || alturaCm === 0) {
+ resultadoElemento.textContent = "Por favor, preencha todos os campos.";
+ return; // Interrompe a função se a validação falhar
+ }
+ // 4. Converter altura de cm para metros
+ const alturaM = alturaCm / 100;
+ // 5. Calcular o IMC
+ const imc = peso / (alturaM * alturaM);
+ // 6. Arredondar o resultado para duas casas decimais
+ const imcArredondado = imc.toFixed(2);
+ // 7. Usar a lógica (if/else if/else) para classificar o IMC
+ let classificacao = '';
+ if (imc < 18.5) {
+ classificacao = 'Abaixo do peso';
+ } else if (imc >= 18.5 && imc <= 24.9) {
+ classificacao = 'Peso normal';
+ } else if (imc >= 25 && imc <= 29.9) {
+ classificacao = 'Sobrepeso';
+ } else {
+ classificacao = 'Obesidade';
+ }
+ // 8. Exibir o resultado final na página
+ resultadoElemento.textContent = `Seu IMC é ${imcArredondado}
+(${classificacao}).`;
+});
